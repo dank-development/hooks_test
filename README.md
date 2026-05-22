@@ -189,3 +189,15 @@ Notes:
 - Backend listens on :3000
 - Compose file routes host (incoming) 3001:3000 (container, internal).
 - Nginx RPM maps /api/ to 127.0.0.1:3001, so it goes into the 3001 port of the host, mapping to port 3000 inside the backend container.
+
+Create database and table:
+
+```psql
+  CREATE DATABASE hooks_test;
+  CREATE TABLE todo_list (
+    id SERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    is_checked BOOLEAN NOT NULL DEFAULT false,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  );
+```
